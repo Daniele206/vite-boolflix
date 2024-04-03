@@ -23,12 +23,24 @@
 
 <template>
   <main>
+    <h1 class="text-white text-center fw-bold pt-3">Film</h1>
     <div class="my-container">
       <Card 
       v-for="film in store.filmList"
       :key="film.id"
       :title="film.title"
       :originalTitle="film.original_title"
+      :language="film.original_language"
+      :vote="film.vote_average"
+      />
+    </div>
+    <h1 class="text-white text-center fw-bold pt-5 pb-3">Serie TV</h1>
+    <div class="my-container">
+      <Card 
+      v-for="film in store.serieTvList"
+      :key="film.id"
+      :title="film.name"
+      :originalTitle="film.original_name"
       :language="film.original_language"
       :vote="film.vote_average"
       />

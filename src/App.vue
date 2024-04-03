@@ -26,8 +26,8 @@
 
     methods:{
       getApi(){
-        axios.get(this.store.apiUrl, {
-          params :this.store.respParams
+        axios.get(this.store.apiUrlFilm, {
+          params: this.store.respParams
         })
         .then(result => {
           this.store.filmList = result.data.results
@@ -36,6 +36,14 @@
         .catch(error => {
           console.log(error);
         });
+
+        axios.get(this.store.apiUrlSerieTv, {
+          params: this.store.respParams
+        })
+        .then(result => {
+          this.store.serieTvList = result.data.results
+          console.log(this.store.serieTvList);
+        })
       }
     },
     
