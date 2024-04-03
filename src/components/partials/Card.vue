@@ -14,7 +14,8 @@
   <div class="my-W-H-card d-center flex-column">
     <div class="fs-3 fw-bold text-center">{{ title }}</div>
     <div class="fs-5 text-center">{{ originalTitle }}</div>
-    <div class="fs-5 fw-bold">{{ language }}</div>
+    <img v-if="language === 'it' || language === 'en'" class="w-25 m-2" :src="`/public/${language}.png`" :alt="language">
+    <div v-else class="fs-5 fw-bold">{{ language }}</div>
     <div class="fs-3 fw-bold">{{ vote }}</div>
   </div>
 </template>
