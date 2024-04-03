@@ -6,8 +6,8 @@
 
 
 <template>
-  <div class="template_debug bg-danger">
-    Footer
+  <div>
+    
   </div>
 </template>
 
