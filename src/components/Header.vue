@@ -12,7 +12,7 @@
         <h1 class="fw-bold">BOOLFIX</h1>
         <form class="d-flex w-25" role="search">
           <input class="form-control me-2" type="search" placeholder="Ricerca Film o Serie TV" aria-label="Search">
-          <button class="btn btn-outline-danger" type="submit">Cerca</button>
+          <button class="btn btn-outline-danger" type="submit">CERCA</button>
         </form>
       </div>
     </nav>
