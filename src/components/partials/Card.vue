@@ -78,7 +78,7 @@
 
   .my-card{
     width: 400px;
-    aspect-ratio: 10/14;
+    aspect-ratio: 2/3;
     overflow: hidden;
     color: white;
     border: 1px solid white;
@@ -96,6 +96,9 @@
       transform: translate(-50%, -50%);
       font-size: 10rem;
     };
+    &:hover{
+      z-index: 0;
+    }
     &:hover .ico-not-img{
       z-index: -1;
     };
