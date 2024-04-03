@@ -5,6 +5,6 @@ export const store = reactive({
   filmList: [],
   respParams: {
     api_key: 'e5faaa8e0f0b7271372dd8dff63da720',
-    query: 'matrix',
+    query: '',
   },
 })

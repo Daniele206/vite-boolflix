@@ -30,7 +30,8 @@
           params :this.store.respParams
         })
         .then(result => {
-          console.log(result.data.results);
+          this.store.filmList = result.data.results
+          console.log(this.store.filmList);
         })
         .catch(error => {
           console.log(error);
@@ -47,7 +48,7 @@
 
 <template>
   <div>
-    <Header />
+    <Header @search="getApi()"/>
     <Main />
     <Footer />
   </div>
