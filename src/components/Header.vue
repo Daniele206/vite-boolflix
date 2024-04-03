@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <h1 class="fw-bold">BOOLFIX</h1>
         <div class="d-flex w-25">
-          <input type="text" class="form-control me-2" placeholder="Ricerca Film o Serie TV"  v-model="store.respParams.query">
+          <input type="text" @keyup.enter="search" class="form-control me-2" placeholder="Ricerca Film o Serie TV"  v-model="store.respParams.query">
           <button @click="search" class="btn btn-outline-danger" type="button">CERCA</button>
         </div>
       </div>
@@ -43,6 +43,9 @@
     background-color: black;
     color: red;
     height: 80px;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
   }
 
 </style>

@@ -32,17 +32,19 @@
       :originalTitle="film.original_title"
       :language="film.original_language"
       :vote="film.vote_average"
+      :img="film.poster_path"
       />
     </div>
     <h1 class="text-white text-center fw-bold pt-5 pb-3">Serie TV</h1>
     <div class="my-container">
       <Card 
-      v-for="film in store.serieTvList"
-      :key="film.id"
-      :title="film.name"
-      :originalTitle="film.original_name"
-      :language="film.original_language"
-      :vote="film.vote_average"
+      v-for="serie in store.serieTvList"
+      :key="serie.id"
+      :title="serie.name"
+      :originalTitle="serie.original_name"
+      :language="serie.original_language"
+      :vote="serie.vote_average"
+      :img="serie.poster_path"
       />
     </div>
   </main>
@@ -53,7 +55,8 @@
   @use '../assets/scss/variables' as *;
   main{
     background: rgb(58, 58, 58);
-    min-height: calc(100vh - 80px)
+    min-height: 100vh;
+    padding-top: 80px;
   }
 
 </style>
