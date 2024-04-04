@@ -57,7 +57,7 @@
 <template>
   <div>
     <Header @search="getApi()"/>
-    <Main />
+    <Main/>
     <Footer />
   </div>
 </template>

@@ -4,47 +4,53 @@
   import { store } from '../data/store';
   // store
 
-  import Card from './partials/Card.vue';
+  import card from './partials/card.vue';
 
   export default {
     components:{
-      Card
+      card
     },
 
     data(){
       return{
         store
       }
-    }
-    
+    },
   }
 </script>
 
 
 <template>
-  <main>
-    <h1 class="text-white text-center fw-bold pt-3">Film</h1>
+  <main @click="store.overviewStatus = false">
+    <h1 v-if="store.filmList.length == 0 && store.serieTvList.length == 0" class="text-white text-center fw-bold pt-3">Nessun risultato trovato</h1>
+    <h1 v-if="store.filmList.length > 0" class="text-white text-center fw-bold pt-3">Film</h1>
     <div class="my-container">
-      <Card 
+      <card 
       v-for="film in store.filmList"
       :key="film.id"
+      :id="film.id"
       :title="film.title"
       :originalTitle="film.original_title"
       :language="film.original_language"
       :vote="film.vote_average"
       :img="film.poster_path"
+      :date="film.release_date"
+      :overview="film.overview"
       />
     </div>
-    <h1 class="text-white text-center fw-bold pt-5 pb-3">Serie TV</h1>
+    <h1 v-if="store.serieTvList.length > 0" class="text-white text-center fw-bold pt-5 pb-3">Serie TV</h1>
     <div class="my-container">
-      <Card 
+      <card 
       v-for="serie in store.serieTvList"
       :key="serie.id"
+      :id="serie.id"
       :title="serie.name"
       :originalTitle="serie.original_name"
       :language="serie.original_language"
       :vote="serie.vote_average"
       :img="serie.poster_path"
+      :date="serie.first_air_date"
+      :overview="serie.overview"
       />
     </div>
   </main>

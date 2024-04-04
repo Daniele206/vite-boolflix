@@ -1,17 +1,46 @@
 <script>
+//store
+import { store } from '../../data/store';
+//store
+
   export default {
+    data(){
+      return{
+        store,
+      }
+    },
+
     props:{
       title: String,
       originalTitle: String,
       language: String,
       vote: String,
-      img: String
+      img: String,
+      date: String,
+      overview: String,
+      id: Number,
     },
 
     methods:{
       getStars(num){
         const stars = (num / 2).toFixed()
         return stars
+      },
+
+      getDate(){
+        let cDate = this.date.split('-');
+        cDate.splice(1, 2);
+        cDate = cDate.join('');
+        return cDate
+      },
+
+      showOverview(){
+        if(this.id != this.store.selector && this.store.overviewStatus === false){
+          this.store.overviewStatus = !this.store.overviewStatus
+        }else if(this.id === this.store.selector){
+          this.store.overviewStatus = !this.store.overviewStatus
+        }
+        this.store.selector = this.id
       }
     },
   }
@@ -19,13 +48,13 @@
 
 
 <template>
-  <div class="my-card position-relative" :style="`background-image: url(https://image.tmdb.org/t/p/w342${img}) ;`">
+  <div @click.stop="showOverview()" class="my-card position-relative" :style="`background-image: url(https://image.tmdb.org/t/p/w342${img}) ;`">
     <div v-if="img === null" class="ico-not-img"><i class="fa-solid fa-film"></i></div>
-    <div class="d-center flex-column px-2 info-card">
+    <div v-if="!store.overviewStatus || store.selector !== id" class="d-center flex-column px-2 info-card">
       <div class="not-filter fs-3 fw-bold text-center">{{ title }}</div>
-      <div class="not-filter fs-5 text-center">{{ originalTitle }}</div>
+      <div v-if="title != originalTitle" class="not-filter fs-5 text-center">{{ originalTitle }}</div>
       <img v-if="language === 'it' || language === 'en'" class="not-filter w-25 m-2" :src="`/public/${language}.png`" :alt="language">
-      <div v-else class="not-filter fs-5 fw-bold">{{ language }}</div>
+      <div v-else class="not-filter fs-5 fw-bold text-uppercase">{{ language }}</div>
       <div v-if="getStars(vote) == 0" class="not-filter fs-3 fw-bold">
         <i class="fa-regular fa-star"></i>
         <i class="fa-regular fa-star"></i>
@@ -68,6 +97,12 @@
         <i class="fa-solid fa-star text-warning"></i>
         <i class="fa-solid fa-star text-warning"></i>
       </div>
+      <div>{{ getDate() }}</div>
+    </div>
+    <div v-if="store.overviewStatus && store.selector === id" class="px-3 overview">
+      <span class="text-capitalize fw-bold fs-3 ">overview:</span>
+      <br>
+      {{ overview }}
     </div>
   </div>
 
@@ -89,17 +124,13 @@
     margin-bottom: 20px;
     margin-left: 10px;
     margin-right: 10px;
+    z-index: 0;
     .ico-not-img{
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 10rem;
-    };
-    &:hover{
-      z-index: 0;
-    }
-    &:hover .ico-not-img{
       z-index: -1;
     };
     .info-card{
@@ -111,5 +142,10 @@
       display: flex;
       cursor: pointer;
     };
+    .overview{
+      background-color: rgba(0, 0, 0, 0.8);
+      height: 100%;
+      cursor: pointer;
+    }
   }
 </style>
