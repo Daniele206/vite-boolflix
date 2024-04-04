@@ -102,7 +102,8 @@ import { store } from '../../data/store';
     <div v-if="store.overviewStatus && store.selector === id" class="px-3 overview">
       <span class="text-capitalize fw-bold fs-3 ">overview:</span>
       <br>
-      {{ overview }}
+      <p v-if="overview === ''">No description found</p>
+      <p>{{ overview }}</p>
     </div>
   </div>
 

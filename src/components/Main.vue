@@ -23,9 +23,10 @@
 <template>
   <main @click="store.overviewStatus = false">
     <h1 v-if="store.filmList.length == 0 && store.serieTvList.length == 0" class="text-white text-center fw-bold pt-3">Nessun risultato trovato</h1>
-    <h1 v-if="store.filmList.length > 0" class="text-white text-center fw-bold pt-3">Film</h1>
+    <h1 v-if="store.filmList.length > 0 && store.FilmCheck" class="text-white text-center fw-bold pt-3">Film</h1>
     <div class="my-container">
       <card 
+      v-if="store.FilmCheck"
       v-for="film in store.filmList"
       :key="film.id"
       :id="film.id"
@@ -38,9 +39,10 @@
       :overview="film.overview"
       />
     </div>
-    <h1 v-if="store.serieTvList.length > 0" class="text-white text-center fw-bold pt-5 pb-3">Serie TV</h1>
+    <h1 v-if="store.serieTvList.length > 0 && store.SerieTvCheck" class="text-white text-center fw-bold pt-5 pb-3">Serie TV</h1>
     <div class="my-container">
-      <card 
+      <card
+      v-if="store.SerieTvCheck"
       v-for="serie in store.serieTvList"
       :key="serie.id"
       :id="serie.id"
