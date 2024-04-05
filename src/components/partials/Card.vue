@@ -31,14 +31,21 @@ import { store } from '../../data/store';
             params: this.store.respInfoParams
           })
           .then(result => {
-            console.log(result.data.cast);
             this.actorList = result.data.cast
           })
           .catch(error => {
             console.log(error);
           })
         }else{
-          
+          axios.get(`${this.store.apiUrlInfoTv}/${this.id}/credits` , {
+            params: this.store.respInfoParams
+          })
+          .then(result => {
+            this.actorList = result.data.cast
+          })
+          .catch(error => {
+            console.log(error);
+          })
         }
       },
 
@@ -127,7 +134,8 @@ import { store } from '../../data/store';
       <span class="text-capitalize fw-bold fs-3 ">overview:</span>
       <br>
       <p v-if="overview === ''">No description found</p>
-      <p>{{ overview }}</p>
+      <p class="my-h-40 overflow-auto">{{ overview }}</p>
+      <span v-if="actorList.length > 0" class="text-capitalize fw-bold fs-3 d-block pt-3 pb-2">Cast:</span>
       <h5 v-show="i<5" v-for="(actor, i) in actorList" :key="i" class="fw-bold">{{ actor.name }}</h5>
     </div>
   </div>
@@ -136,6 +144,10 @@ import { store } from '../../data/store';
 
 
 <style lang="scss" scoped>
+
+  .my-h-40{
+    height: 35%;
+  }
 
   .my-card{
     width: 400px;
