@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 //store
 import { store } from '../../data/store';
 //store
@@ -7,6 +8,7 @@ import { store } from '../../data/store';
     data(){
       return{
         store,
+        actorList: []
       }
     },
 
@@ -19,9 +21,27 @@ import { store } from '../../data/store';
       date: String,
       overview: String,
       id: Number,
+      isMovie: Boolean
     },
 
     methods:{
+      getApi(){
+        if(this.isMovie){
+          axios.get(`${this.store.apiUrlInfoFilm}/${this.id}/credits` , {
+            params: this.store.respInfoParams
+          })
+          .then(result => {
+            console.log(result.data.cast);
+            this.actorList = result.data.cast
+          })
+          .catch(error => {
+            console.log(error);
+          })
+        }else{
+          
+        }
+      },
+
       getStars(num){
         const stars = (num / 2).toFixed()
         return stars
@@ -43,6 +63,10 @@ import { store } from '../../data/store';
         this.store.selector = this.id
       }
     },
+
+    mounted(){
+      this.getApi()
+    }
   }
 </script>
 
@@ -104,6 +128,7 @@ import { store } from '../../data/store';
       <br>
       <p v-if="overview === ''">No description found</p>
       <p>{{ overview }}</p>
+      <h5 v-show="i<5" v-for="(actor, i) in actorList" :key="i" class="fw-bold">{{ actor.name }}</h5>
     </div>
   </div>
 

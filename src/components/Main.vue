@@ -37,6 +37,7 @@
       :img="film.poster_path"
       :date="film.release_date"
       :overview="film.overview"
+      :isMovie=true
       />
     </div>
     <h1 v-if="store.serieTvList.length > 0 && store.SerieTvCheck" class="text-white text-center fw-bold pt-5 pb-3">Serie TV</h1>
@@ -53,6 +54,7 @@
       :img="serie.poster_path"
       :date="serie.first_air_date"
       :overview="serie.overview"
+      :isMovie=false
       />
     </div>
   </main>

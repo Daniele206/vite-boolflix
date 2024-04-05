@@ -33,7 +33,7 @@
             <option @click="store.SerieTvCheck = false, store.FilmCheck = true" value="film">Film</option>
             <option @click="store.SerieTvCheck = true, store.FilmCheck = false" value="serie-tv">Serie TV</option>
           </select>
-          <button @click="search" class="btn btn-outline-danger" type="button">CERCA</button>
+          <button @click="search" class="btn btn-outline-danger" type="button"><span class="fw-bold">CERCA</span></button>
         </div>
       </div>
     </nav>
